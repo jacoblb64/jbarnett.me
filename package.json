@@ -1,0 +1,27 @@
+{
+  "name": "jbarnett.me",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "main": ".eleventy.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm-run-all build:content build:styles",
+    "build:prod": "NODE_ENV=production npm-run-all build:content build:styles",
+    "build:content": "eleventy",
+    "build:styles": "postcss src/styles/main.pcss -o dist/styles/main.css",
+    "watch:content": "eleventy --serve",
+    "watch:styles": "npm run build:styles -- --watch",
+    "start": "npm-run-all --parallel watch:content watch:styles"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^0.11.0",
+    "autoprefixer": "^9.8.4",
+    "eleventy-plugin-lazyimages": "^1.1.2",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^7.1.1",
+    "postcss-preset-env": "^6.7.0",
+    "tailwindcss": "^1.4.6"
+  }
+}

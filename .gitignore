@@ -1,0 +1,12 @@
+# IDE files
+.vscode
+.history
+
+# npm modules
+node_modules
+
+# built files
+dist
+
+# lazy images cache
+.lazyimages.json

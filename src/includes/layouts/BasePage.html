@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Jacob Barnett</title>
+        <link rel="stylesheet" href="/styles/main.css" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    </head>
+    <body class="flex flex-col h-full">
+        {% include components/header.html %}
+
+        <div class="px-5 md:px-20 flex flex-1 flex-col items-center">
+            {{ content | safe }}
+        </div>
+
+        {% include components/footer.html %}
+
+        {% if site.environment == "production" %}
+            <script
+                data-goatcounter=""
+                async
+                src="//gc.zgo.at/count.js"
+            ></script>
+        {% endif %}
+    </body>
+</html>

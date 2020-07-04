@@ -3,16 +3,20 @@
 @tailwind base;
 
 /* custom styles go here */
+:root {
+    --xp-red: #DE482B;
+    --xp-yellow: #FCCF03;
+    --xp-blue: #3B77BC;
+    --xp-green: #81C046;
+}
+
 .office-colors {
     background: linear-gradient(
         to right,
-        #DE482B 25%,
-        #FCCF03 25%,
-        #FCCF03 50%,
-        #81C046 50%,
-        #81C046 75%,
-        #3B77BC 75%,
-        #3B77BC 100%
+        var(--xp-red) 25%,
+        var(--xp-yellow) 50%,
+        var(--xp-green) 75%,
+        var(--xp-blue) 100%
     )
 }
 

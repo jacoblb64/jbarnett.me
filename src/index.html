@@ -3,7 +3,7 @@ layout: layouts/BasePage.html
 ---
 
 <div class="flex flex-col w-full space-y-10 py-10 max-w-4xl">
-    <h1 class="text-6xl italic tracking-wider stroke aesthetic-effect-text-glitch" data-glitch="Jacob Barnett">Jacob Barnett</h1>
+    <h1 class="text-6xl italic aesthetic-font-modifier-outline-black aesthetic-effect-text-glitch" data-glitch="Jacob Barnett">Jacob Barnett</h1>
     <hr class="h-2 office-colors">
     <div class="window">
         <div class="title-bar">
@@ -48,5 +48,54 @@ layout: layouts/BasePage.html
             <br>C:&#92;WINDOWS&#92;SYSTEM32> Jacob Barnett is a software engineer
           </pre>
         </div>
+      </div>
+
+      <div class="window">
+        <div class="title-bar">
+            <div class="title-bar-text">Info Tabs</div>
+        </div>
+        <div class="window-body">
+            <menu role="tablist" aria-label="Tabs">
+                <button role="tab" aria-controls="test" aria-selected="true">test</button>
+                <button role="tab" aria-controls="thing" aria-selected="false">thing</button>
+            </menu>
+            <article role="tabpanel" id="test">
+                <h3>Test content</h3>
+                <iframe class="tabframe" src="https://www.linkedin.com/in/jgbarnett/" title="LinkedIn"></iframe>
+            </article>
+            <article role="tabpanel" id="thing" hidden>
+                <strong>thing tab</strong>
+            </article>
+        </div>
+      </div>
+
+      <div class="window">
+          <div class="title-bar">
+              <div class="title-bar-text">mozilla example</div>
+          </div>
+          <div class="window-body">
+            <div class="tabs">
+                <div role="tablist" aria-label="Sample Tabs">
+                  <button role="tab" aria-selected="true" aria-controls="panel-1" id="tab-1" tabindex="0">
+                        First Tab
+                      </button>
+                  <button role="tab" aria-selected="false" aria-controls="panel-2" id="tab-2" tabindex="-1">
+                        Second Tab
+                      </button>
+                  <button role="tab" aria-selected="false" aria-controls="panel-3" id="tab-3" tabindex="-1">
+                        Third Tab
+                      </button>
+                </div>
+                <div id="panel-1" role="tabpanel" tabindex="0" aria-labelledby="tab-1">
+                  <p>Content for the first panel</p>
+                </div>
+                <div id="panel-2" role="tabpanel" tabindex="0" aria-labelledby="tab-2" hidden>
+                  <p>Content for the second panel</p>
+                </div>
+                <div id="panel-3" role="tabpanel" tabindex="0" aria-labelledby="tab-3" hidden>
+                  <p>Content for the third panel</p>
+                </div>
+              </div>
+          </div>
       </div>
 </div>

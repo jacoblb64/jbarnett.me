@@ -1,14 +1,18 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/478bb8e9-7f7b-4b3d-9e0c-37f2854433e7/deploy-status)](https://app.netlify.com/sites/in-search-of-stuff/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a8b6d572-d6c2-4e95-b9f6-0640b37e0aa8/deploy-status)](https://app.netlify.com/sites/jbarnett/deploys)
 
-# in-search-of-stuff
 
-A personal review site to document some of the enchanting items that I've found.
+# *[jbarnett.me](jbarnett.me)*
 
-Using [eleventy](https://www.11ty.dev/) for static site generation and [tailwind](https://tailwindcss.com/) for styling. Deploying on [netlify](https://www.netlify.com/) and using [goat counter](https://www.goatcounter.com/) for analytics.
+A personal site in the spirit of old school Windows XP, inspired by my days at Microsoft and love of vaporwave.
 
-The goals of this project are to have an incredibly lightwight, fast-loading and responsive site, and to eventually be able to write new reviews in pure markdown, and separate presentation from content.
+Using [eleventy](https://www.11ty.dev/) for static site generation and a lot of [XP.css](https://github.com/botoxparty/XP.css/), a little bit of [aesthetic.css](https://github.com/torch2424/aesthetic-css), and some help from [tailwind](https://tailwindcss.com/). Deploying on [netlify](https://www.netlify.com/) and using [goat counter](https://www.goatcounter.com/) for analytics.
+
+A personal site is meant to show some personality, and also be fun to tweak and learn. Most of the code was forked from ideas used for [my personal review site](https://github.com/jacoblb64/in-search-of-stuff)
 
 ## dev setup
 - `npm install`
 - `npm run build` - builds content with `eleventy` and styles with `postcss`
 - `npm run start` - serve and watch both sources for changes
+
+## deploying
+- pushes to master are automatically built and deployed with `netlify`

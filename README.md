@@ -1,7 +1,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/a8b6d572-d6c2-4e95-b9f6-0640b37e0aa8/deploy-status)](https://app.netlify.com/sites/jbarnett/deploys)
 
 
-# *[jbarnett.me](jbarnett.me)*
+# *[jbarnett.me](https://jbarnett.me)*
 
 A personal site in the spirit of old school Windows XP, inspired by my days at Microsoft and love of vaporwave.
 

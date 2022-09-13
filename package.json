@@ -5,6 +5,9 @@
   "author": "",
   "license": "ISC",
   "main": ".eleventy.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "clean": "rm -rf dist",
     "build": "npm-run-all build:content build:styles",

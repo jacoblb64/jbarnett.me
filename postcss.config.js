@@ -1,8 +1,10 @@
-const postcssImport = require("postcss-easy-import")
+const postcssImport = require("postcss-easy-import");
 const postcssPresetEnv = require("postcss-preset-env");
+const tailwindcss = require("@tailwindcss/postcss");
 
 module.exports = {
     plugins: [
+        tailwindcss,
         postcssImport,
         postcssPresetEnv({
             stage: 3,
@@ -10,7 +12,6 @@ module.exports = {
                 "nesting-rules": true,
             },
         }),
-        require("tailwindcss"),
         require("autoprefixer"),
     ],
 };

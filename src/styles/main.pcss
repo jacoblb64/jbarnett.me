@@ -1,7 +1,7 @@
 /* @import "xp.css/dist/xp.css"; TODO: Fix this import on netlify */
 @import "aesthetic-css/aesthetic.css";
 
-@tailwind base;
+@import "tailwindcss";
 
 /* custom styles go here */
 :root {
@@ -18,7 +18,8 @@
         var(--xp-yellow) 50%,
         var(--xp-green) 75%,
         var(--xp-blue) 100%
-    )
+    );
+    border-top-width: 0px;
 }
 
 .stroke {
@@ -27,7 +28,8 @@
 }
 
 pre {
-    white-space: pre-wrap;
+    white-space: pre-wrap !important;
+    padding: 8px 12px 8px 0px !important;
 }
 
 .appear-1s {
@@ -52,6 +54,3 @@ pre {
     100% { opacity: 1;}
 }
 
-@tailwind components;
-
-@tailwind utilities;

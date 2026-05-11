@@ -15,6 +15,7 @@ module.exports = (config) => {
             includes: "includes",
             data: "data",
         },
-        environment: process.env.NODE_ENV,
+        htmlTemplateEngine: "njk",
+        markdownTemplateEngine: "njk",
     };
 };

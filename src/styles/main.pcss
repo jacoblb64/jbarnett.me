@@ -54,3 +54,50 @@ pre {
     100% { opacity: 1;}
 }
 
+/* Override aesthetic-css glitch keyframes — upstream hardcodes the clip
+   rect's right edge at 450px (truncates text wider than that) and its
+   top/bottom values max out around 113px (covers only one line of large
+   text). The values below extend both axes so the glitch tracks wide
+   headings and multi-line wraps on mobile. Assisted by Claude */
+@keyframes aesthetic-effect-text-glitch-anim-1 {
+  0%       { clip: rect(58px, 9999px, 58px, 0); }
+  5.88235% { clip: rect(180px, 9999px, 150px, 0); }
+  11.76471%{ clip: rect(204px, 9999px, 84px, 0); }
+  17.64706%{ clip: rect(140px, 9999px, 148px, 0); }
+  23.52941%{ clip: rect(92px, 9999px, 70px, 0); }
+  29.41176%{ clip: rect(186px, 9999px, 220px, 0); }
+  35.29412%{ clip: rect(224px, 9999px, 48px, 0); }
+  41.17647%{ clip: rect(148px, 9999px, 40px, 0); }
+  47.05882%{ clip: rect(142px, 9999px, 130px, 0); }
+  52.94118%{ clip: rect(46px, 9999px, 76px, 0); }
+  58.82353%{ clip: rect(114px, 9999px, 40px, 0); }
+  64.70588%{ clip: rect(216px, 9999px, 216px, 0); }
+  70.58824%{ clip: rect(2px, 9999px, 38px, 0); }
+  76.47059%{ clip: rect(106px, 9999px, 30px, 0); }
+  82.35294%{ clip: rect(218px, 9999px, 82px, 0); }
+  88.23529%{ clip: rect(8px, 9999px, 62px, 0); }
+  94.11765%{ clip: rect(84px, 9999px, 206px, 0); }
+  100%     { clip: rect(194px, 9999px, 174px, 0); }
+}
+
+@keyframes aesthetic-effect-text-glitch-anim-2 {
+  0%       { clip: rect(130px, 9999px, 108px, 0); }
+  5.88235% { clip: rect(28px, 9999px, 48px, 0); }
+  11.76471%{ clip: rect(68px, 9999px, 38px, 0); }
+  17.64706%{ clip: rect(196px, 9999px, 142px, 0); }
+  23.52941%{ clip: rect(106px, 9999px, 20px, 0); }
+  29.41176%{ clip: rect(72px, 9999px, 100px, 0); }
+  35.29412%{ clip: rect(176px, 9999px, 196px, 0); }
+  41.17647%{ clip: rect(120px, 9999px, 118px, 0); }
+  47.05882%{ clip: rect(190px, 9999px, 216px, 0); }
+  52.94118%{ clip: rect(14px, 9999px, 132px, 0); }
+  58.82353%{ clip: rect(88px, 9999px, 84px, 0); }
+  64.70588%{ clip: rect(226px, 9999px, 76px, 0); }
+  70.58824%{ clip: rect(36px, 9999px, 66px, 0); }
+  76.47059%{ clip: rect(78px, 9999px, 140px, 0); }
+  82.35294%{ clip: rect(158px, 9999px, 212px, 0); }
+  88.23529%{ clip: rect(128px, 9999px, 126px, 0); }
+  94.11765%{ clip: rect(88px, 9999px, 198px, 0); }
+  100%     { clip: rect(16px, 9999px, 22px, 0); }
+}
+

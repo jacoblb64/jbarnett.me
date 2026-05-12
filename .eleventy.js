@@ -1,7 +1,7 @@
 const lazyImagesPlugin = require('eleventy-plugin-lazyimages');
 
 module.exports = (config) => {
-    config.addPassthroughCopy("src/favicon.ico");
+    config.addPassthroughCopy({"src/favicons" : "/"});
     config.addPassthroughCopy("src/assets/**/*");
     
     config.addPlugin(lazyImagesPlugin, {

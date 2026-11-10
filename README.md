@@ -19,15 +19,12 @@ A personal site is meant to show some personality, and also be fun to tweak and 
 Node 24 is expected (see `engines` in `package.json`).
 
 ## contributing / workflow
-`master` is protected. Changes land through a pull request:
 
 1. Branch off `master` and commit your work. Use [Conventional Commits](https://www.conventionalcommits.org/) in the PR title (`feat:`, `fix:`, `chore:`, `test:`, `ci:`, `docs:`), since the PR title becomes the squash-commit message.
 2. Open a PR. Two things kick off automatically:
    - **GitHub Actions** runs the `test` workflow (`.github/workflows/test.yml`), which builds the site and runs the Playwright suite. If it fails, the HTML report and traces are attached to the run as an artifact.
    - **Netlify** builds a deploy preview of the branch and links it from the PR checks, so you can click through the real site before merging.
 3. Merge with **squash** (the only merge method allowed; linear history is enforced). Merging to `master` triggers the production deploy on Netlify.
-
-Note: the ruleset currently enables required status checks but doesn't list any, so a red `test` run won't block the merge button on its own. Add the `e2e` job to the required checks in the repo's rulesets if you want CI to gate merges.
 
 ## testing
 End-to-end tests live in `test/` and run with [Playwright](https://playwright.dev/) against a fresh `npm run build`. A tiny dependency-free static server (`test/serve.mjs`) serves `dist/`, so the tests see exactly what Netlify deploys rather than the dev server's live-reload output.

@@ -9,7 +9,7 @@ test.describe('/ content', () => {
     test('document basics', async ({ page }) => {
         await expect(page).toHaveTitle('Jacob Barnett');
         await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-        await expect(page.locator('link[rel="icon"]')).toHaveAttribute('href', 'favicon.ico');
+        await expect(page.locator('link[rel="icon"]')).toHaveAttribute('href', '/favicon.ico');
         await expect(page.locator('script[data-goatcounter]')).toHaveCount(0);
     });
 
@@ -86,17 +86,20 @@ test.describe('/ content', () => {
         const morphism = page.getByRole('link', { name: 'Morphism' });
         await expect(morphism).toHaveAttribute('href', 'https://nobrainr.github.io/morphism/');
         await expect(morphism).toHaveAttribute('target', '_blank');
+        await expect(morphism).toHaveAttribute('rel', 'noopener noreferrer');
 
         const havenLife = page.locator('ul.tree-view > details', { hasText: 'Haven Life' });
         // Haven Life is collapsed by default, so the link is hidden; include hidden elements.
         const amorphic = havenLife.getByRole('link', { name: 'Amorphic', includeHidden: true });
         await expect(amorphic).toHaveAttribute('href', 'https://github.com/haven-life/amorphic-framework');
         await expect(amorphic).toHaveAttribute('target', '_blank');
+        await expect(amorphic).toHaveAttribute('rel', 'noopener noreferrer');
         await expect(page.locator('ul.tree-view a')).toHaveCount(2);
     });
 
     test('about window and OK button open the GitHub repo in a new tab', async ({ page, context }) => {
         await expect(page.locator('.window').last().locator('.window-body p')).toHaveText('Built using eleventy and xp.css');
+        await expect(page.locator('form[action*="github.com"]')).toHaveAttribute('rel', 'noopener noreferrer');
         await context.route('https://github.com/**', (route) => route.fulfill({ status: 200, contentType: 'text/html', body: '<title>stub</title>' }));
         const popupPromise = context.waitForEvent('page');
         await page.getByRole('button', { name: 'OK' }).click();

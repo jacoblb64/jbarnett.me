@@ -7,9 +7,10 @@ on:
 
 jobs:
   e2e:
-    # macOS to match the committed screenshot baselines, which were generated on macOS.
-    # Switching runners means regenerating test/__snapshots__/**/*.png on that platform.
-    runs-on: macos-latest
+    # Pinned macOS to match the committed screenshot baselines (generated on macOS).
+    # Pinning (rather than macos-latest) keeps text rasterization stable across runs;
+    # bumping the runner image means regenerating test/__snapshots__/**/*.png.
+    runs-on: macos-15
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4

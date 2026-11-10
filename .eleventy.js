@@ -6,6 +6,7 @@ module.exports = (config) => {
     // package's dist also ships docs we don't want. Note the file is XP.css
     // (case matters on Linux/Netlify).
     config.addPassthroughCopy({ "node_modules/xp.css/dist/XP.css": "styles/xp/XP.css" });
+    config.addPassthroughCopy({ "node_modules/xp.css/dist/XP.css.map": "styles/xp/XP.css.map" });
     config.addPassthroughCopy({ "node_modules/xp.css/dist/*.woff2": "styles/xp" });
     config.addPassthroughCopy({ "node_modules/xp.css/dist/*.woff": "styles/xp" });
 

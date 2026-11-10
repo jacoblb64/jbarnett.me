@@ -3,7 +3,7 @@
 // (no eleventy-dev-server live-reload script injected).
 import { createServer } from 'node:http';
 import { createReadStream, statSync } from 'node:fs';
-import { join, extname, normalize } from 'node:path';
+import { join, extname, normalize, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = join(fileURLToPath(new URL('.', import.meta.url)), '..', 'dist');
@@ -17,14 +17,23 @@ const mime = {
     '.svg': 'image/svg+xml',
     '.png': 'image/png',
     '.json': 'application/json',
+    '.map': 'application/json',
+    '.woff': 'font/woff',
+    '.woff2': 'font/woff2',
 };
 
 createServer((req, res) => {
     const url = new URL(req.url, 'http://localhost');
-    let pathname = decodeURIComponent(url.pathname);
+    let pathname;
+    try {
+        pathname = decodeURIComponent(url.pathname);
+    } catch {
+        res.writeHead(400).end();
+        return;
+    }
     if (pathname.endsWith('/')) pathname += 'index.html';
     const file = normalize(join(root, pathname));
-    if (!file.startsWith(root)) {
+    if (file !== root && !file.startsWith(root + sep)) {
         res.writeHead(403).end();
         return;
     }

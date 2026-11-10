@@ -10,3 +10,6 @@ dist
 
 # lazy images cache
 .lazyimages.json
+# playwright output
+test/test-results
+test/playwright-report

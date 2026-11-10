@@ -16,3 +16,11 @@ A personal site is meant to show some personality, and also be fun to tweak and 
 
 ## deploying
 - pushes to master are automatically built and deployed with `netlify`
+## testing
+End-to-end tests live in `test/` and run with [Playwright](https://playwright.dev/) against a fresh `npm run build` of `dist/`. They cover the rendered HTML (text snapshots), compiled CSS (computed-style checks), `<details>` behavior, links, and full-page screenshots at desktop and mobile widths. xp.css is served from a vendored copy in `test/fixtures/` so runs are network-free and deterministic.
+
+- `npm test` - build the site and run the suite
+- `npm run test:update` - accept intentional visual/HTML changes by rewriting `test/__snapshots__/`
+- `npm run test:report` - open the HTML report from the last run
+
+Snapshots in `test/__snapshots__/` are committed and act as the baseline. When upgrading dependencies: run `npm test` first (green), upgrade, rebuild, run `npm test` again. Any diff is either a regression or an intentional change to review and then accept with `test:update`.

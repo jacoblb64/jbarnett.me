@@ -16,10 +16,14 @@
     "build:styles": "postcss src/styles/main.pcss -o dist/styles/main.css",
     "watch:content": "eleventy --serve",
     "watch:styles": "npm run build:styles -- --watch",
-    "start": "npm-run-all --parallel watch:content watch:styles"
+    "start": "npm-run-all --parallel watch:content watch:styles",
+    "test": "playwright test -c test/playwright.config.js",
+    "test:update": "playwright test -c test/playwright.config.js --update-snapshots",
+    "test:report": "playwright show-report test/playwright-report"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.5",
+    "@playwright/test": "1.65.0",
     "@tailwindcss/postcss": "^4.3.0",
     "aesthetic-css": "^1.0.1",
     "autoprefixer": "^10.5.0",

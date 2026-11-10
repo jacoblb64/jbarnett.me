@@ -16,19 +16,22 @@
     "build:styles": "postcss src/styles/main.pcss -o dist/styles/main.css",
     "watch:content": "eleventy --serve",
     "watch:styles": "npm run build:styles -- --watch",
-    "start": "npm-run-all --parallel watch:content watch:styles"
+    "start": "npm-run-all --parallel watch:content watch:styles",
+    "test": "playwright test -c test/playwright.config.js",
+    "test:update": "playwright test -c test/playwright.config.js --update-snapshots",
+    "test:report": "playwright show-report test/playwright-report"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.5",
-    "@tailwindcss/postcss": "^4.3.0",
+    "@11ty/eleventy": "^3.1.8",
+    "@playwright/test": "1.65.0",
+    "@tailwindcss/postcss": "^4.3.5",
     "aesthetic-css": "^1.0.1",
-    "autoprefixer": "^10.5.0",
-    "eleventy-plugin-lazyimages": "^2.1.2",
+    "autoprefixer": "^10.6.2",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.5.14",
-    "postcss-cli": "^11.0.1",
+    "postcss": "^8.5.32",
+    "postcss-cli": "^12.0.0",
     "postcss-easy-import": "^4.0.0",
-    "postcss-preset-env": "^11.2.1",
+    "postcss-preset-env": "^11.6.2",
     "xp.css": "^0.2.6"
   }
 }

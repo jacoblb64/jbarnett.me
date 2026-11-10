@@ -27,7 +27,6 @@
     "@tailwindcss/postcss": "^4.3.5",
     "aesthetic-css": "^1.0.1",
     "autoprefixer": "^10.6.2",
-    "eleventy-plugin-lazyimages": "^2.1.2",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.5.32",
     "postcss-cli": "^12.0.0",

@@ -1,17 +1,22 @@
 // @ts-check
 // Shared Playwright fixture: makes every page deterministic and network-free.
-//  - xp.css is loaded from unpkg (unpinned) in BasePage.html; serve the vendored copy instead.
-//  - GoatCounter analytics is blocked outright (only present in production builds anyway).
+//  - Any request that leaves localhost is aborted. The site is meant to be fully
+//    self-hosted (xp.css + fonts are copied into dist/styles/xp), so this both
+//    blocks GoatCounter analytics and catches accidental third-party requests.
+//  - Aborted off-origin requests are collected on `page.offOrigin` for assertions.
 const base = require('@playwright/test');
-const path = require('node:path');
-
-const XP_CSS = path.join(__dirname, 'fixtures', 'xp.css');
 
 const test = base.test.extend({
     context: async ({ context }, use) => {
-        await context.route('**/unpkg.com/xp.css**', (route) => route.fulfill({ path: XP_CSS, contentType: 'text/css' }));
-        await context.route('**/gc.zgo.at/**', (route) => route.abort());
+        await context.route(/^(?!http:\/\/localhost)/, (route) => route.abort());
         await use(context);
+    },
+    page: async ({ page }, use) => {
+        page.offOrigin = [];
+        page.on('requestfailed', (req) => {
+            if (!req.url().startsWith('http://localhost')) page.offOrigin.push(req.url());
+        });
+        await use(page);
     },
 });
 

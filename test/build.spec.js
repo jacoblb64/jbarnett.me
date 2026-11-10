@@ -11,7 +11,7 @@ const normalize = (s) => s.split('\n').map((l) => l.trimEnd()).join('\n').trim()
 
 test.describe('build output', () => {
     test('emits the expected files', () => {
-        for (const file of ['index.html', 'about/index.html', 'styles/main.css', 'favicon.ico', 'favicon.svg', 'favicon-96x96.png']) {
+        for (const file of ['index.html', 'about/index.html', 'styles/main.css', 'styles/xp/XP.css', 'styles/xp/ms_sans_serif.woff2', 'styles/xp/PerfectDOSVGA437Win.woff', 'favicon.ico', 'favicon.svg', 'favicon-96x96.png']) {
             expect(fs.existsSync(path.join(dist, file)), file).toBe(true);
         }
     });
@@ -44,5 +44,14 @@ test.describe('build output', () => {
 
     test('non-production build has no analytics script', () => {
         expect(read('index.html')).not.toContain('goatcounter');
+    });
+
+    test('no stylesheet is loaded from a CDN', () => {
+        for (const f of ['index.html', 'about/index.html']) expect(read(f), f).not.toMatch(/https?:\/\/[^"']*\.css/);
+    });
+
+    test('does not copy xp.css docs cruft', () => {
+        const files = fs.readdirSync(path.join(dist, 'styles/xp'));
+        expect(files.sort()).toEqual(['PerfectDOSVGA437Win.woff', 'PerfectDOSVGA437Win.woff2', 'XP.css', 'ms_sans_serif.woff', 'ms_sans_serif.woff2', 'ms_sans_serif_bold.woff', 'ms_sans_serif_bold.woff2'].sort());
     });
 });

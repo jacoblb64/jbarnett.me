@@ -13,6 +13,23 @@ test.describe('/ content', () => {
         await expect(page.locator('script[data-goatcounter]')).toHaveCount(0);
     });
 
+    test('is fully self-hosted: no third-party requests, xp.css and fonts load locally', async ({ page }) => {
+        const sheets = page.locator('link[rel="stylesheet"]');
+        await expect(sheets).toHaveCount(2);
+        await expect(sheets.nth(0)).toHaveAttribute('href', '/styles/main.css');
+        await expect(sheets.nth(1)).toHaveAttribute('href', '/styles/xp/XP.css');
+        await page.waitForLoadState('networkidle');
+        expect(page.offOrigin).toEqual([]);
+        const fonts = await page.evaluate(async () => {
+            await document.fonts.ready;
+            return Array.from(document.fonts).filter((f) => f.status === 'loaded').map((f) => f.family).sort();
+        });
+        expect(fonts.length).toBeGreaterThan(0);
+        expect(fonts).toContain('Pixelated MS Sans Serif');
+        // Window title bars use xp.css's Trebuchet; body text uses its pixel font.
+        await expect(page.locator('.title-bar-text').first()).toHaveCSS('font-family', /Trebuchet/);
+    });
+
     test('glitch heading', async ({ page }) => {
         const h1 = page.locator('h1');
         await expect(h1).toHaveCount(1);
@@ -182,5 +199,11 @@ test.describe('/ compiled styles are applied', () => {
         expect(css.headers()['content-type']).toContain('text/css');
         const favicon = await request.get('/favicon.ico');
         expect(favicon.status()).toBe(200);
+        const xp = await request.get('/styles/xp/XP.css');
+        expect(xp.status()).toBe(200);
+        expect(xp.headers()['content-type']).toContain('text/css');
+        for (const font of ['ms_sans_serif.woff2', 'ms_sans_serif_bold.woff2', 'PerfectDOSVGA437Win.woff2']) {
+            expect((await request.get(`/styles/xp/${font}`)).status(), font).toBe(200);
+        }
     });
 });
